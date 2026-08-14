@@ -1,0 +1,3513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Kartik Doye — Visual Designer & Product Designer</title>
+
+  <meta
+    name="description"
+    content="Kartik Doye is a visual and product designer working across brand, digital experiences, UI/UX and frontend development."
+  />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --bg: #f5f5f2;
+      --surface: #ffffff;
+      --surface-2: #ecece8;
+      --text: #111111;
+      --muted: #6d6d68;
+      --line: #d9d9d3;
+      --accent: #b9ff55;
+      --accent-dark: #17200b;
+      --radius: 20px;
+      --max: 1440px;
+      --nav-height: 76px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Inter", sans-serif;
+      overflow-x: hidden;
+      transition:
+        background 0.35s ease,
+        color 0.35s ease;
+    }
+
+    body.dark {
+      --bg: #11110f;
+      --surface: #1a1a17;
+      --surface-2: #242420;
+      --text: #f4f4ef;
+      --muted: #9b9b94;
+      --line: #33332e;
+      --accent: #b9ff55;
+      --accent-dark: #11110f;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    ::selection {
+      background: var(--accent);
+      color: #111;
+    }
+
+    .page {
+      width: min(var(--max), calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .mono {
+      font-family: "DM Mono", monospace;
+    }
+
+    .eyebrow {
+      font-family: "DM Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* =========================
+       NAVIGATION
+    ========================= */
+
+    nav {
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(var(--max), calc(100% - 32px));
+      height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 10px 0 18px;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      z-index: 1000;
+      transition: transform 0.35s ease, opacity 0.25s ease;
+      will-change: transform;
+    }
+
+    nav.nav-hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, -100px);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .logo-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 15%, transparent);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+      font-size: 12px;
+      color: #111;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      mix-blend-mode: normal;
+      padding: 10px 18px;
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      border-radius: 999px;
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.76),
+        rgba(255, 255, 255, 0.34)
+      );
+      box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.95),
+        0 10px 28px rgba(17, 17, 17, 0.12);
+      backdrop-filter: blur(18px) saturate(150%);
+      -webkit-backdrop-filter: blur(18px) saturate(150%);
+    }
+
+    .nav-links a {
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: inherit;
+      opacity: 0.65;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: auto;
+      color: #fff;
+      mix-blend-mode: normal;
+      padding: 4px 8px;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      border-radius: 999px;
+      background: linear-gradient(
+        135deg,
+        rgba(40, 40, 40, 0.75),
+        rgba(12, 12, 12, 0.4)
+      );
+      box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.18),
+        0 10px 28px rgba(0, 0, 0, 0.18);
+      backdrop-filter: blur(18px) saturate(150%);
+      -webkit-backdrop-filter: blur(18px) saturate(150%);
+    }
+
+    .theme-btn,
+    .menu-btn {
+      width: 38px;
+      height: 38px;
+      border: none;
+      background: transparent;
+      border-radius: 0;
+      cursor: pointer;
+      color: inherit;
+      display: grid;
+      place-items: center;
+      transition: 0.25s ease;
+    }
+
+    .theme-btn:hover,
+    .menu-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .nav-contact {
+      height: 38px;
+      padding: 0 8px;
+      background: transparent;
+      color: inherit;
+      border-radius: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      transition: 0.25s ease;
+    }
+
+    .nav-contact:hover {
+      transform: translateY(-2px);
+    }
+
+    .menu-btn {
+      display: none;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 100vh;
+      padding-top: 160px;
+      padding-bottom: 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hero-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 40px;
+    }
+
+    .availability {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 13px;
+      border: 1px solid var(--line);
+      border-radius: 100px;
+      background: var(--surface);
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .availability span {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #55d96b;
+      box-shadow: 0 0 0 4px rgba(85, 217, 107, 0.12);
+    }
+
+    .hero-intro {
+      width: min(460px, 100%);
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .hero-intro-block {
+      width: min(460px, 100%);
+    }
+
+    .hero-intro-block .hero-intro {
+      width: 100%;
+    }
+
+    .hero-portrait {
+      display: block;
+      width: 400px;
+      height: 400px;
+      margin-top: 20px;
+      object-fit: cover;
+      border-radius: 0;
+      border: 1px solid var(--line);
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.12);
+    }
+
+    .hero-title {
+      margin-top: 110px;
+      font-size: clamp(74px, 11.4vw, 190px);
+      line-height: 0.83;
+      letter-spacing: -0.085em;
+      font-weight: 600;
+      max-width: 1300px;
+    }
+
+    .hero-main {
+      display: flex;
+      align-items: flex-end;
+      gap: clamp(24px, 4vw, 64px);
+    }
+
+    .hero-main .hero-title {
+      flex: 1;
+      min-width: 0;
+      margin-top: 0;
+    }
+
+    .hero-main .hero-portrait {
+      margin-top: 0;
+      flex-shrink: 0;
+      transform: translateY(-60px);
+    }
+
+    .hero-title .outline {
+      color: transparent;
+      -webkit-text-stroke: 1.5px var(--text);
+    }
+
+    .hero-title .indent {
+      padding-left: clamp(20px, 10vw, 160px);
+    }
+
+    .hero-bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+      margin-top: 90px;
+    }
+
+    .hero-meta {
+      border-top: 1px solid var(--line);
+      padding-top: 15px;
+    }
+
+    .hero-meta strong {
+      display: block;
+      font-size: 14px;
+      margin-top: 8px;
+      font-weight: 600;
+    }
+
+    .hero-scroll {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    .scroll-arrow {
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      animation: float 2s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(5px);
+      }
+    }
+
+    /* =========================
+       SECTION
+    ========================= */
+
+    section {
+      padding: 150px 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+
+    .section-title {
+      font-size: clamp(42px, 7vw, 100px);
+      line-height: 0.9;
+      letter-spacing: -0.065em;
+      font-weight: 600;
+    }
+
+    .section-description {
+      max-width: 350px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    /* =========================
+       PROJECTS
+    ========================= */
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 20px;
+    }
+
+    .project {
+      position: relative;
+      cursor: pointer;
+      border-radius: var(--radius);
+      overflow: hidden;
+      min-height: 620px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      transition:
+        transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
+        box-shadow 0.45s ease;
+    }
+
+    .project:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.10);
+    }
+
+    .project:nth-child(1) {
+      grid-column: span 7;
+    }
+
+    .project:nth-child(2) {
+      grid-column: span 5;
+    }
+
+    .project:nth-child(3) {
+      grid-column: span 5;
+    }
+
+    .project:nth-child(4) {
+      grid-column: span 7;
+    }
+
+    .project[data-project="panic"] {
+      order: 1;
+      grid-column: span 7;
+    }
+
+    .project[data-project="drops"] {
+      order: 3;
+      grid-column: span 5;
+    }
+
+    .project[data-project="root"] {
+      order: 2;
+      grid-column: span 5;
+    }
+
+    .project[data-project="frontend"] {
+      order: 4;
+    }
+
+    .project-visual {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .project-info {
+      position: absolute;
+      left: 22px;
+      right: 22px;
+      bottom: 22px;
+      z-index: 4;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .project-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 11px;
+      background: rgba(255,255,255,0.85);
+      color: #111;
+      border-radius: 100px;
+      font-family: "DM Mono", monospace;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      backdrop-filter: blur(12px);
+    }
+
+    .project-name {
+      margin-top: 10px;
+      color: white;
+      font-size: clamp(28px, 4vw, 52px);
+      line-height: 0.95;
+      letter-spacing: -0.055em;
+      font-weight: 600;
+    }
+
+    .project-description {
+      max-width: 350px;
+      color: rgba(255,255,255,0.72);
+      font-size: 12px;
+      line-height: 1.55;
+      margin-top: 10px;
+    }
+
+    .project-open {
+      flex: 0 0 auto;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: white;
+      color: #111;
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+      transition: transform 0.3s ease;
+    }
+
+    .project:hover .project-open {
+      transform: rotate(45deg);
+    }
+
+    /* Drops Co */
+
+    .drops {
+      background:
+        radial-gradient(circle at 80% 15%, rgba(255,255,255,0.9), transparent 24%),
+        linear-gradient(135deg, #c9a28d, #d9c4b6 42%, #8d766a);
+    }
+
+    .drops::before {
+      content: "";
+      position: absolute;
+      width: 62%;
+      height: 75%;
+      right: 8%;
+      top: 10%;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.35), rgba(255,255,255,0)),
+        url("https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1200&q=85")
+        center/cover;
+      border-radius: 4px;
+      filter: grayscale(100%);
+      box-shadow: 0 35px 70px rgba(50,30,20,0.2);
+      transform: rotate(3deg);
+    }
+
+    .drops::after {
+      content: "THE DROPS CO";
+      position: absolute;
+      left: 7%;
+      top: 16%;
+      color: rgba(255,255,255,0.8);
+      font-size: clamp(42px, 6vw, 90px);
+      font-weight: 600;
+      letter-spacing: -0.07em;
+      z-index: 1;
+    }
+
+    .project-visual.drops::before,
+    .project-visual.drops::after,
+    .modal-image.drops::before,
+    .modal-image.drops::after {
+      display: none;
+    }
+
+    .drops-card-hero {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    /* PanicSafe */
+
+    .panic {
+      background: #f7f7f5;
+    }
+
+    .panic-card-hero {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .project[data-project="panic"] .project-name {
+      color: #111;
+      text-shadow: 0 2px 12px rgba(255, 255, 255, 0.9);
+    }
+
+    .project[data-project="panic"] .project-description {
+      color: rgba(17, 17, 17, 0.82);
+      text-shadow: 0 1px 10px rgba(255, 255, 255, 0.9);
+      font-weight: 500;
+    }
+
+    .project[data-project="panic"] .project-open {
+      background: rgba(17, 17, 17, 0.9);
+      color: #fff;
+    }
+
+    .panic-gallery {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .panic-gallery img {
+      position: absolute;
+      display: block;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      box-shadow: 0 22px 48px rgba(0, 0, 0, 0.38);
+    }
+
+    .panic-gallery .panic-screen {
+      z-index: 3;
+      width: 31%;
+      height: auto;
+      right: 11%;
+      top: 9%;
+    }
+
+    .panic-gallery .panic-overview {
+      z-index: 2;
+      width: 64%;
+      height: auto;
+      left: 6%;
+      top: 14%;
+      transform: rotate(-4deg);
+    }
+
+    .panic-gallery .panic-process {
+      z-index: 1;
+      width: 49%;
+      height: auto;
+      left: 16%;
+      bottom: 9%;
+      opacity: 0.9;
+      transform: rotate(3deg);
+    }
+
+    .phone {
+      position: absolute;
+      width: 190px;
+      height: 390px;
+      border-radius: 28px;
+      background: #111;
+      border: 7px solid #262626;
+      left: 50%;
+      top: 48%;
+      transform: translate(-50%, -50%) rotate(8deg);
+      box-shadow: 0 40px 90px rgba(0,0,0,0.5);
+      overflow: hidden;
+    }
+
+    .phone::before {
+      content: "";
+      position: absolute;
+      inset: 7px;
+      border-radius: 21px;
+      background:
+        radial-gradient(circle at 50% 25%, rgba(255,255,255,0.2), transparent 30%),
+        linear-gradient(160deg, #191a2e, #631a28);
+    }
+
+    .phone::after {
+      content: "PANICSAFE";
+      position: absolute;
+      left: 22px;
+      top: 42px;
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+    }
+
+    /* RootWatch */
+
+    .root {
+      background:
+        radial-gradient(circle at 70% 25%, rgba(170,255,125,0.7), transparent 23%),
+        linear-gradient(140deg, #263729, #101812);
+    }
+
+    .root-card-hero {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .project[data-project="root"] .project-name {
+      color: #111;
+      text-shadow: 0 2px 12px rgba(255, 255, 255, 0.9);
+    }
+
+    .project[data-project="root"] .project-description {
+      color: rgba(17, 17, 17, 0.82);
+      text-shadow: 0 1px 10px rgba(255, 255, 255, 0.9);
+      font-weight: 500;
+    }
+
+    .project[data-project="root"] .project-open {
+      background: rgba(17, 17, 17, 0.9);
+      color: #fff;
+    }
+
+    .plant-card {
+      position: absolute;
+      width: 72%;
+      height: 65%;
+      left: 14%;
+      top: 14%;
+      border-radius: 20px;
+      background: rgba(240,255,238,0.95);
+      transform: rotate(-4deg);
+      padding: 30px;
+      color: #172019;
+      box-shadow: 0 35px 90px rgba(0,0,0,0.35);
+    }
+
+    .plant-card .plant-title {
+      font-size: 30px;
+      letter-spacing: -0.05em;
+      font-weight: 700;
+    }
+
+    .plant-circle {
+      width: 150px;
+      height: 150px;
+      margin: 35px auto;
+      border-radius: 50%;
+      border: 14px solid #8edb65;
+      display: grid;
+      place-items: center;
+      font-size: 26px;
+      font-weight: 700;
+    }
+
+    .plant-status {
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid #ccd8c8;
+      padding-top: 15px;
+      font-family: "DM Mono", monospace;
+      font-size: 10px;
+    }
+
+    /* Frontend */
+
+    .frontend {
+      background: #d8d5cd;
+    }
+
+    .browser {
+      position: absolute;
+      width: 76%;
+      height: 66%;
+      top: 15%;
+      left: 12%;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+      overflow: hidden;
+      transform: rotate(2deg);
+    }
+
+    .browser-top {
+      height: 35px;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding-left: 12px;
+    }
+
+    .browser-top span {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #bbb;
+    }
+
+    .browser-content {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      height: calc(100% - 35px);
+    }
+
+    .browser-sidebar {
+      background: #191919;
+      padding: 25px;
+      color: white;
+    }
+
+    .browser-sidebar strong {
+      font-size: 15px;
+    }
+
+    .browser-sidebar div {
+      margin-top: 55px;
+      font-family: "DM Mono", monospace;
+      font-size: 9px;
+      line-height: 2;
+      opacity: 0.6;
+    }
+
+    .browser-main {
+      padding: 35px;
+      color: #111;
+    }
+
+    .browser-main h4 {
+      font-size: 35px;
+      letter-spacing: -0.06em;
+    }
+
+    .browser-lines {
+      margin-top: 30px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .browser-lines span {
+      height: 12px;
+      background: #ecece8;
+      border-radius: 10px;
+    }
+
+    .browser-lines span:nth-child(2) {
+      width: 70%;
+    }
+
+    .browser-lines span:nth-child(3) {
+      width: 45%;
+    }
+
+    /* =========================
+       MARQUEE
+    ========================= */
+
+    .marquee {
+      overflow: hidden;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 24px 0;
+      white-space: nowrap;
+    }
+
+    .marquee-track {
+      display: inline-flex;
+      align-items: center;
+      gap: 30px;
+      animation: marquee 22s linear infinite;
+    }
+
+    .marquee span {
+      font-size: clamp(32px, 5vw, 70px);
+      letter-spacing: -0.06em;
+      font-weight: 600;
+    }
+
+    .marquee .dot {
+      width: 12px;
+      height: 12px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    @keyframes marquee {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* =========================
+       EXPERIENCE
+    ========================= */
+
+    .experience {
+      display: grid;
+      grid-template-columns: 0.7fr 1.3fr;
+      gap: 80px;
+    }
+
+    .experience-intro h3 {
+      font-size: clamp(42px, 5vw, 70px);
+      letter-spacing: -0.07em;
+      line-height: 0.95;
+    }
+
+    .experience-intro p {
+      max-width: 350px;
+      margin-top: 25px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .experience-list {
+      border-top: 1px solid var(--line);
+    }
+
+    .experience-item {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      padding: 25px 0;
+      border-bottom: 1px solid var(--line);
+      transition: padding 0.3s ease;
+    }
+
+    .experience-item:hover {
+      padding-left: 15px;
+    }
+
+    .experience-company {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.04em;
+    }
+
+    .experience-role {
+      margin-top: 5px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .experience-date {
+      color: var(--muted);
+      font-family: "DM Mono", monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      padding-top: 5px;
+    }
+
+    .experience-dot {
+      position: absolute;
+      left: -4px;
+      top: 34px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0;
+      transform: scale(0);
+      transition: 0.3s ease;
+    }
+
+    .experience-item:hover .experience-dot {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* =========================
+       CAPABILITIES
+    ========================= */
+
+    .capabilities {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid var(--line);
+    }
+
+    .capability {
+      padding: 35px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .capability:nth-child(odd) {
+      padding-right: 40px;
+      border-right: 1px solid var(--line);
+    }
+
+    .capability:nth-child(even) {
+      padding-left: 40px;
+    }
+
+    .capability-number {
+      font-family: "DM Mono", monospace;
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    .capability h3 {
+      margin-top: 35px;
+      font-size: clamp(28px, 3vw, 45px);
+      letter-spacing: -0.06em;
+    }
+
+    .capability p {
+      margin-top: 12px;
+      max-width: 420px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    /* =========================
+       ABOUT
+    ========================= */
+
+    .about {
+      display: grid;
+      grid-template-columns: 0.7fr 1.3fr;
+      gap: 100px;
+    }
+
+    .about-big {
+      font-size: clamp(38px, 5vw, 75px);
+      line-height: 0.98;
+      letter-spacing: -0.07em;
+    }
+
+    .about-big em {
+      color: var(--muted);
+      font-style: normal;
+    }
+
+    .about-copy {
+      max-width: 620px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .about-copy p + p {
+      margin-top: 24px;
+    }
+
+    .about-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 35px;
+    }
+
+    .tag {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      padding: 9px 12px;
+      border-radius: 100px;
+      font-size: 11px;
+    }
+
+    /* =========================
+       CONTACT
+    ========================= */
+
+    .contact {
+      position: relative;
+      overflow: hidden;
+      padding: 120px 0 60px;
+    }
+
+    .contact::before {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: var(--accent);
+      filter: blur(130px);
+      opacity: 0.13;
+      right: -100px;
+      bottom: -200px;
+      pointer-events: none;
+    }
+
+    .contact-title {
+      max-width: 1100px;
+      font-size: clamp(60px, 10vw, 155px);
+      line-height: 0.85;
+      letter-spacing: -0.085em;
+    }
+
+    .contact-title span {
+      color: transparent;
+      -webkit-text-stroke: 1.5px var(--text);
+    }
+
+    .contact-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 30px;
+      margin-top: 80px;
+      border-top: 1px solid var(--line);
+      padding-top: 25px;
+    }
+
+    .email-link {
+      font-size: clamp(18px, 3vw, 32px);
+      letter-spacing: -0.04em;
+      border-bottom: 1px solid var(--text);
+      padding-bottom: 4px;
+    }
+
+    .socials {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .social {
+      padding: 10px 14px;
+      border: 1px solid var(--line);
+      border-radius: 100px;
+      font-size: 11px;
+      transition: 0.25s ease;
+    }
+
+    .social:hover {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 25px 0 35px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-family: "DM Mono", monospace;
+      font-size: 9px;
+      text-transform: uppercase;
+    }
+
+    /* =========================
+       MODAL
+    ========================= */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(10,10,10,0.72);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      z-index: 3000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-inner {
+      width: min(1050px, 100%);
+      max-height: 90vh;
+      overflow-y: auto;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      transform: translateY(30px) scale(0.98);
+      transition: 0.35s ease;
+    }
+
+    .modal.active .modal-inner {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-image {
+      height: 430px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .modal-content {
+      padding: 40px;
+    }
+
+    .modal-content h2 {
+      font-size: clamp(40px, 6vw, 70px);
+      letter-spacing: -0.07em;
+      line-height: 0.9;
+    }
+
+    .modal-content p {
+      max-width: 680px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-top: 20px;
+      font-size: 14px;
+      text-align: justify;
+    }
+
+    .modal-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 25px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 42px;
+      height: 42px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.85);
+      color: #111;
+      cursor: pointer;
+      z-index: 10;
+      font-size: 18px;
+    }
+
+    /* =========================
+       REVEAL
+    ========================= */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition:
+        opacity 0.8s ease,
+        transform 0.8s cubic-bezier(0.2,0.8,0.2,1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 900px) {
+      .page {
+        width: min(100% - 28px, var(--max));
+      }
+
+      nav {
+        width: calc(100% - 20px);
+        top: 10px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .menu-btn {
+        display: grid;
+      }
+
+      .nav-contact {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 130px;
+      }
+
+      .hero-top {
+        flex-direction: column;
+      }
+
+      .hero-portrait {
+        width: 300px;
+        height: 300px;
+      }
+
+      .hero-title {
+        margin-top: 80px;
+        font-size: clamp(62px, 16vw, 120px);
+      }
+
+      .hero-main {
+        gap: 24px;
+      }
+
+      .hero-bottom {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-scroll {
+        justify-content: flex-start;
+      }
+
+      section {
+        padding: 100px 0;
+      }
+
+      .section-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .projects-grid {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .project {
+        min-height: 580px;
+      }
+
+      .experience,
+      .about {
+        grid-template-columns: 1fr;
+        gap: 50px;
+      }
+
+      .capabilities {
+        grid-template-columns: 1fr;
+      }
+
+      .capability:nth-child(odd) {
+        padding-right: 0;
+        border-right: none;
+      }
+
+      .capability:nth-child(even) {
+        padding-left: 0;
+      }
+
+      .contact-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-title {
+        font-size: 18vw;
+      }
+
+      .hero-main {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-main .hero-portrait {
+        margin-top: 20px;
+        transform: none;
+      }
+
+      .hero-title .indent {
+        padding-left: 7vw;
+      }
+
+      .hero-bottom {
+        grid-template-columns: 1fr;
+      }
+
+      .project {
+        min-height: 520px;
+      }
+
+      .project-info {
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+      }
+
+      .project-name {
+        font-size: 34px;
+      }
+
+      .project-description {
+        max-width: 240px;
+      }
+
+      .experience-item {
+        grid-template-columns: 1fr;
+      }
+
+      .experience-date {
+        padding-top: 0;
+      }
+
+      .modal {
+        padding: 10px;
+      }
+
+      .modal-image {
+        height: 280px;
+      }
+
+      .modal-content {
+        padding: 25px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+      }
+    }
+    /* =========================
+       SPLIT HERO
+    ========================= */
+
+    .hero.page {
+      position: relative;
+      isolation: isolate;
+      display: grid;
+      grid-template-columns: 53% 47%;
+      grid-template-rows: minmax(160px, 28vh) 1fr;
+      width: 100%;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      background: #f5f5f2;
+    }
+
+    .modal-case-study {
+      display: none;
+      max-width: 680px;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+
+    .modal-case-study.active {
+      display: block;
+    }
+
+    .modal-case-study h3 {
+      font-size: 15px;
+      letter-spacing: -0.02em;
+    }
+
+    .modal-case-study p {
+      margin-top: 10px;
+    }
+
+    .modal-gallery {
+      display: none;
+      gap: 38px;
+      margin-top: 28px;
+    }
+
+    .modal-gallery.active {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-story-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(220px, 0.85fr);
+      align-items: center;
+      gap: clamp(24px, 5vw, 60px);
+    }
+
+    .modal-story-row:nth-child(even) {
+      grid-template-columns: minmax(220px, 0.85fr) minmax(0, 1.15fr);
+    }
+
+    .modal-story-row:nth-child(even) img,
+    .modal-story-row:nth-child(even) video {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .modal-story-row:nth-child(2) img {
+      width: 72%;
+      justify-self: center;
+    }
+
+    .modal-story-row:nth-child(even) .modal-story-copy {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .modal-story-row img,
+    .modal-story-row video {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border: 1px solid var(--line);
+      display: block;
+    }
+
+    .modal-story-copy h3 {
+      font-size: 20px;
+      letter-spacing: -0.04em;
+    }
+
+    .modal-story-copy p {
+      margin-top: 10px;
+    }
+
+    .modal-image.panic {
+      background: #f4f4f2;
+    }
+
+    .modal-image.root {
+      background: #f4f4f2;
+    }
+
+    .modal-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .modal-image.panic img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 0 auto;
+      width: 47%;
+      background: #1c1c1c;
+      z-index: 0;
+    }
+
+    .availability,
+    .hero-intro-block,
+    .hero-main .hero-title,
+    .hero-main .hero-portrait {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-top,
+    .hero > div:last-child,
+    .hero-main {
+      display: contents;
+    }
+
+    .availability {
+      grid-column: 1;
+      grid-row: 1;
+      align-self: end;
+      justify-self: start;
+      margin: 0 0 30px clamp(28px, 11vw, 160px);
+    }
+
+    .hero-intro-block {
+      grid-column: 2;
+      grid-row: 1;
+      align-self: end;
+      width: auto;
+      margin: 0 clamp(28px, 4vw, 64px) 30px;
+    }
+
+    .hero-intro-block .hero-intro {
+      color: #f5f5f2;
+      max-width: 410px;
+      font-size: 14px;
+    }
+
+    .hero-main .hero-title {
+      grid-column: 1;
+      grid-row: 2;
+      align-self: start;
+      width: auto;
+      max-width: none;
+      margin: 0 0 0 clamp(24px, 3vw, 48px);
+      font-size: clamp(120px, 12.72vw, 216px);
+      line-height: 0.72;
+    }
+
+    .hero-title .indent {
+      padding-left: clamp(20px, 8vw, 115px);
+    }
+
+    .hero-main .hero-portrait {
+      grid-column: 2;
+      grid-row: 2;
+      align-self: start;
+      justify-self: center;
+      width: min(68%, 400px);
+      height: auto;
+      aspect-ratio: auto;
+      object-fit: contain;
+      margin: 20px 0 0;
+      transform: none;
+      border-color: rgba(255, 255, 255, 0.2);
+      box-shadow: none;
+    }
+
+    .hero-bottom {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-column: 1;
+      grid-row: 2;
+      align-self: end;
+      width: auto;
+      margin: 0 28px 42px clamp(28px, 11vw, 160px);
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .hero.page .hero-title {
+      color: #111;
+    }
+
+    .hero.page .hero-title .outline {
+      -webkit-text-stroke-color: #111;
+    }
+
+    .hero-bottom .eyebrow {
+      color: #5f5f5a;
+    }
+
+    .hero-bottom .hero-meta strong,
+    .hero-bottom .hero-scroll {
+      color: #111;
+    }
+
+    .hero-bottom .scroll-arrow {
+      border-color: #a7a7a0;
+    }
+
+    @media (max-width: 900px) {
+      .hero.page {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        min-height: auto;
+      }
+
+      .hero::before {
+        top: 48%;
+        width: 100%;
+      }
+
+      .availability,
+      .hero-main .hero-title,
+      .hero-intro-block,
+      .hero-main .hero-portrait {
+        grid-column: 1;
+      }
+
+      .availability {
+        grid-row: 1;
+        align-self: auto;
+        margin: 130px 28px 60px;
+      }
+
+      .hero-main .hero-title {
+        grid-row: 1;
+        margin: 130px 28px 80px;
+        font-size: clamp(72px, 16vw, 130px);
+      }
+
+      .hero-intro-block {
+        grid-row: 2;
+        align-self: auto;
+        margin: 72px 28px 35px;
+      }
+
+      .hero-main .hero-portrait {
+        grid-row: 3;
+        justify-self: start;
+        width: min(70vw, 400px);
+        margin: 10px 28px 80px;
+      }
+
+      .hero-bottom {
+        display: grid;
+        grid-column: 1;
+        grid-row: 4;
+        grid-template-columns: 1fr;
+        margin: 0 28px 80px;
+      }
+
+      .hero-bottom .eyebrow,
+      .hero-bottom .hero-meta strong {
+        color: #f5f5f2;
+      }
+
+      .hero-bottom .hero-meta {
+        border-color: rgba(255, 255, 255, 0.22);
+      }
+
+      .hero-bottom .scroll-arrow {
+        color: #f5f5f2;
+        border-color: rgba(255, 255, 255, 0.35);
+      }
+
+      .nav-links.mobile-open {
+        transform: none;
+      }
+
+      .nav-links {
+        display: flex;
+        position: fixed;
+        top: 72px;
+        left: 50%;
+        width: max-content;
+        max-width: calc(100vw - 32px);
+        padding: 9px 14px;
+        gap: clamp(12px, 3vw, 24px);
+        transform: translateX(-50%);
+        white-space: nowrap;
+      }
+
+      .menu-btn {
+        display: none;
+      }
+
+      .nav-right {
+        color: #fff;
+      }
+
+      .nav-contact {
+        display: flex;
+      }
+
+      .modal-gallery.active {
+        display: flex;
+      }
+
+      .modal-gallery img {
+        height: auto;
+        max-height: none;
+        object-fit: contain;
+      }
+
+      .modal-story-row,
+      .modal-story-row:nth-child(even) {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-story-row:nth-child(even) img,
+      .modal-story-row:nth-child(even) video,
+      .modal-story-row:nth-child(even) .modal-story-copy {
+        grid-column: 1;
+        grid-row: auto;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .page {
+        width: min(100% - 32px, var(--max));
+      }
+
+      nav {
+        top: 8px;
+        width: calc(100% - 16px);
+        height: 54px;
+        padding: 0;
+        justify-content: space-between;
+      }
+
+      .theme-btn,
+      .menu-btn {
+        width: 38px;
+        height: 38px;
+      }
+
+      .nav-links {
+        position: static;
+        left: auto;
+        width: auto;
+        max-width: none;
+        padding: 7px 10px;
+        gap: 9px;
+        font-size: 11px;
+        transform: none;
+      }
+
+      .nav-right {
+        flex: 0 0 auto;
+        margin-left: 0;
+        gap: 2px;
+        padding: 2px 5px;
+      }
+
+      .theme-btn {
+        width: 30px;
+        height: 30px;
+      }
+
+      .nav-contact {
+        height: 30px;
+        padding: 0 4px;
+        gap: 4px;
+        font-size: 10px;
+      }
+
+      .hero::before {
+        top: 250px;
+      }
+
+      .hero-main .hero-title {
+        margin: 112px 20px 36px;
+        font-size: clamp(64px, 17vw, 92px);
+        line-height: 0.76;
+      }
+
+      .hero-title .indent {
+        padding-left: 12vw;
+      }
+
+      .hero-intro-block {
+        margin: 20px 20px 28px;
+      }
+
+      .hero-intro-block .hero-intro {
+        font-size: 13px;
+        line-height: 1.65;
+      }
+
+      .hero-main .hero-portrait {
+        justify-self: center;
+        width: calc(100% - 40px);
+        max-width: 360px;
+        margin: 0 20px 54px;
+      }
+
+      .hero-bottom {
+        gap: 14px;
+        margin: 0 20px 62px;
+      }
+
+      section {
+        padding: 78px 0;
+      }
+
+      .section-head {
+        gap: 18px;
+        margin-bottom: 32px;
+      }
+
+      .section-description {
+        max-width: 100%;
+      }
+
+      .projects-grid {
+        gap: 14px;
+      }
+
+      .project {
+        min-height: 470px;
+        border-radius: 16px;
+      }
+
+      .project-info {
+        align-items: flex-end;
+        gap: 12px;
+      }
+
+      .project-description {
+        max-width: min(250px, calc(100vw - 110px));
+      }
+
+      .project-open {
+        width: 44px;
+        height: 44px;
+      }
+
+      .experience,
+      .about {
+        gap: 38px;
+      }
+
+      .experience-item {
+        padding: 22px 0 22px 16px;
+        gap: 8px;
+      }
+
+      .experience-company {
+        font-size: 20px;
+      }
+
+      .experience-role {
+        line-height: 1.5;
+      }
+
+      .capability {
+        padding-top: 28px;
+        padding-bottom: 28px;
+      }
+
+      .about-copy {
+        font-size: 15px;
+        line-height: 1.7;
+      }
+
+      .contact {
+        padding: 82px 0 38px;
+      }
+
+      .contact-title {
+        font-size: clamp(54px, 16vw, 84px);
+      }
+
+      .email-link {
+        font-size: clamp(22px, 7vw, 32px);
+        overflow-wrap: anywhere;
+      }
+
+      .socials {
+        gap: 10px;
+      }
+
+      .modal {
+        padding: 8px;
+      }
+
+      .modal-inner {
+        max-height: 94dvh;
+        border-radius: 18px;
+      }
+
+      .modal-image {
+        height: 220px;
+      }
+
+      .modal-content {
+        padding: 22px 18px 28px;
+      }
+
+      .modal-close {
+        top: 12px;
+        right: 12px;
+      }
+
+      .modal-story-row {
+        gap: 18px;
+      }
+
+      .modal-story-row:nth-child(2) img {
+        width: 82%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       NAV
+  ========================= -->
+
+  <nav>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <div class="nav-right">
+      <button
+        class="theme-btn"
+        id="themeBtn"
+        aria-label="Toggle theme"
+      >
+        ☼
+      </button>
+
+      <a href="#contact" class="nav-contact">
+        Let's talk
+        <span>↗</span>
+      </a>
+
+      <button class="menu-btn" id="menuBtn">
+        ☰
+      </button>
+    </div>
+  </nav>
+
+
+  <main id="top">
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
+    <header class="hero page">
+
+      <div class="hero-top">
+
+        <div class="hero-intro-block">
+          <p class="hero-intro">
+            I'm Kartik, a visual and product designer from Bangalore.
+            I work across branding, digital experiences, UI/UX and
+            frontend development.
+          </p>
+        </div>
+
+      </div>
+
+
+      <div>
+
+        <div class="hero-main">
+          <h1 class="hero-title reveal">
+            DOYE
+            <br>
+            <span class="outline indent">KARTIK</span>
+          </h1>
+
+          <img
+            src="Profillepicture.jpg"
+            alt="Kartik Doye"
+            class="hero-portrait"
+          >
+        </div>
+
+
+        <div class="hero-bottom reveal">
+
+          <div class="hero-meta">
+            <span class="eyebrow">Focus</span>
+            <strong>Visual Design / Product / UI UX</strong>
+          </div>
+
+          <div class="hero-meta">
+            <span class="eyebrow">Based in</span>
+            <strong>Bangalore, India</strong>
+          </div>
+
+          <a href="#work" class="hero-meta hero-scroll">
+            <span class="eyebrow">Selected work</span>
+            <span class="scroll-arrow">↓</span>
+          </a>
+
+        </div>
+
+      </div>
+
+    </header>
+
+
+    <!-- =========================
+         MARQUEE
+    ========================= -->
+
+    <div class="marquee">
+
+      <div class="marquee-track">
+
+        <span>VISUAL DESIGN</span>
+        <span class="dot"></span>
+
+        <span>PRODUCT DESIGN</span>
+        <span class="dot"></span>
+
+        <span>UI / UX</span>
+        <span class="dot"></span>
+
+        <span>BRANDING</span>
+        <span class="dot"></span>
+
+        <span>FRONTEND</span>
+        <span class="dot"></span>
+
+        <span>VISUAL DESIGN</span>
+        <span class="dot"></span>
+
+        <span>PRODUCT DESIGN</span>
+        <span class="dot"></span>
+
+        <span>UI / UX</span>
+        <span class="dot"></span>
+
+        <span>BRANDING</span>
+        <span class="dot"></span>
+
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         WORK
+    ========================= -->
+
+    <section id="work">
+
+      <div class="page">
+
+        <div class="section-head reveal">
+
+          <div>
+            <span class="eyebrow">01 / Selected work</span>
+
+            <h2 class="section-title">
+              THINGS<br>
+              I'VE MADE.
+            </h2>
+          </div>
+
+          <p class="section-description">
+            A selection of work across brand identity, visual design,
+            digital products, UI/UX and frontend development.
+          </p>
+
+        </div>
+
+
+        <div class="projects-grid">
+
+
+          <!-- DROPS CO -->
+
+          <article
+            class="project reveal"
+            data-project="drops"
+          >
+
+            <div class="project-visual drops">
+              <img
+                src="thedropscohero.png"
+                alt="The Drops Co visual design"
+                class="drops-card-hero"
+              >
+            </div>
+
+            <div class="project-info">
+
+              <div>
+
+                <div class="project-label">
+                  Internship / Visual Design
+                </div>
+
+                <h3 class="project-name">
+                  The Drops Co
+                </h3>
+
+                <p class="project-description">
+                  Visual direction, hero graphics, campaign assets
+                  and motion work created during my visual design internship.
+                </p>
+
+              </div>
+
+              <div class="project-open">
+                ↗
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- PANICSAFE -->
+
+          <article
+            class="project reveal"
+            data-project="panic"
+          >
+
+            <div class="project-visual panic">
+
+              <img
+                src="panicsafecardhero.png"
+                alt="PanicSafe safety icon"
+                class="panic-card-hero"
+              >
+
+            </div>
+
+            <div class="project-info">
+
+              <div>
+
+                <div class="project-label">
+                  Product / UI UX
+                </div>
+
+                <h3 class="project-name">
+                  PanicSafe
+                </h3>
+
+                <p class="project-description">
+                  A personal safety product designed around
+                  check-ins, emergency alerts and trusted contacts.
+                </p>
+
+              </div>
+
+              <div class="project-open">
+                ↗
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- ROOTWATCH -->
+
+          <article
+            class="project reveal"
+            data-project="root"
+          >
+
+            <div class="project-visual root">
+
+              <img
+                src="herorootwatch.png"
+                alt="RootWatch plant monitoring interface"
+                class="root-card-hero"
+              >
+
+            </div>
+
+            <div class="project-info">
+
+              <div>
+
+                <div class="project-label">
+                  IoT / Product Design
+                </div>
+
+                <h3 class="project-name">
+                  RootWatch
+                </h3>
+
+                <p class="project-description">
+                  A smart plant monitoring concept connecting
+                  sensors, automation and a digital dashboard.
+                </p>
+
+              </div>
+
+              <div class="project-open">
+                ↗
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- FRONTEND -->
+
+          <article
+            class="project reveal"
+            data-project="frontend"
+          >
+
+            <div class="project-visual frontend">
+
+              <div class="browser">
+
+                <div class="browser-top">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+
+                <div class="browser-content">
+
+                  <div class="browser-sidebar">
+
+                    <strong>
+                      K.
+                    </strong>
+
+                    <div>
+                      HOME<br>
+                      WORK<br>
+                      ABOUT<br>
+                      CONTACT
+                    </div>
+
+                  </div>
+
+                  <div class="browser-main">
+
+                    <span class="eyebrow">
+                      DIGITAL EXPERIENCE
+                    </span>
+
+                    <h4>
+                      Design<br>
+                      meets code.
+                    </h4>
+
+                    <div class="browser-lines">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="project-info">
+
+              <div>
+
+                <div class="project-label">
+                  Frontend / Web
+                </div>
+
+                <h3 class="project-name">
+                  Digital Experiences
+                </h3>
+
+                <p class="project-description">
+                  Interfaces brought from concept to functional
+                  responsive web experiences.
+                </p>
+
+              </div>
+
+              <div class="project-open">
+                ↗
+              </div>
+
+            </div>
+
+          </article>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         MARQUEE 2
+    ========================= -->
+
+    <div class="marquee">
+
+      <div class="marquee-track">
+
+        <span>FROM IDEA</span>
+        <span class="dot"></span>
+
+        <span>TO INTERFACE</span>
+        <span class="dot"></span>
+
+        <span>TO EXPERIENCE</span>
+        <span class="dot"></span>
+
+        <span>FROM IDEA</span>
+        <span class="dot"></span>
+
+        <span>TO INTERFACE</span>
+        <span class="dot"></span>
+
+        <span>TO EXPERIENCE</span>
+        <span class="dot"></span>
+
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         EXPERIENCE
+    ========================= -->
+
+    <section id="experience">
+
+      <div class="page">
+
+        <div class="experience">
+
+          <div class="experience-intro reveal">
+
+            <span class="eyebrow">
+              02 / Experience
+            </span>
+
+            <h3>
+              REAL<br>
+              WORK.<br>
+              REAL<br>
+              PEOPLE.
+            </h3>
+
+            <p>
+              I'm early in my career, but I've already had the chance
+              to work on real design problems for real organisations,
+              from visual communication to digital products.
+            </p>
+
+          </div>
+
+
+          <div class="experience-list">
+
+
+            <div class="experience-item reveal">
+
+              <span class="experience-dot"></span>
+
+              <div>
+
+                <div class="experience-company">
+                  The Drops Co
+                </div>
+
+                <div class="experience-role">
+                  Visual Graphic Design / User Experience / Branding Intern
+                </div>
+
+              </div>
+
+              <div class="experience-date">
+                2026 — Present
+              </div>
+
+            </div>
+
+
+            <div class="experience-item reveal">
+
+              <span class="experience-dot"></span>
+
+              <div>
+
+                <div class="experience-company">
+                  TechyGuide
+                </div>
+
+                <div class="experience-role">
+                  Graphic Designer & Web Developer Intern
+                </div>
+
+              </div>
+
+              <div class="experience-date">
+                2024 — 2025
+              </div>
+
+            </div>
+
+
+            <div class="experience-item reveal">
+
+              <span class="experience-dot"></span>
+
+              <div>
+
+                <div class="experience-company">
+                  Brain Quest Consultancy and Training
+                </div>
+
+                <div class="experience-role">
+                  UI/UX Developer
+                </div>
+
+              </div>
+
+              <div class="experience-date">
+                March 2026 — May 2026
+              </div>
+
+            </div>
+
+
+            <div class="experience-item reveal">
+
+              <span class="experience-dot"></span>
+
+              <div>
+
+                <div class="experience-company">
+                  Independent Projects
+                </div>
+
+                <div class="experience-role">
+                  Product Design / Frontend / IoT
+                </div>
+
+              </div>
+
+              <div class="experience-date">
+                Ongoing
+              </div>
+
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CAPABILITIES
+    ========================= -->
+
+    <section>
+
+      <div class="page">
+
+        <div class="section-head reveal">
+
+          <div>
+
+            <span class="eyebrow">
+              03 / Capabilities
+            </span>
+
+            <h2 class="section-title">
+              WHAT I<br>
+              DO BEST.
+            </h2>
+
+          </div>
+
+          <p class="section-description">
+            I sit somewhere between visual design and technology.
+            That means I can think about how something looks,
+            how it feels and how it actually works.
+          </p>
+
+        </div>
+
+
+        <div class="capabilities">
+
+
+          <div class="capability reveal">
+
+            <span class="capability-number">
+              01
+            </span>
+
+            <h3>
+              User Interface (UI)
+            </h3>
+
+            <p>
+              Clear, visually engaging interfaces designed to make
+              digital products intuitive and easy to use.
+            </p>
+
+          </div>
+
+
+          <div class="capability reveal">
+
+            <span class="capability-number">
+              02
+            </span>
+
+            <h3>
+              User Experience (UX)
+            </h3>
+
+            <p>
+              User flows, wireframes and prototypes shaped around
+              real needs, goals and friction-free journeys.
+            </p>
+
+          </div>
+
+
+          <div class="capability reveal">
+
+            <span class="capability-number">
+              03
+            </span>
+
+            <h3>
+              Visual Design
+            </h3>
+
+            <p>
+              Campaign graphics, visual systems, digital creatives,
+              typography, composition and brand communication.
+            </p>
+
+          </div>
+
+
+          <div class="capability reveal">
+
+            <span class="capability-number">
+              04
+            </span>
+
+            <h3>
+              Design + Develop
+            </h3>
+
+            <p>
+              HTML, CSS, JavaScript, Framer and frontend development
+              to take ideas beyond the Figma canvas.
+            </p>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         ABOUT
+    ========================= -->
+
+    <section id="about">
+
+      <div class="page">
+
+        <div class="about">
+
+          <div class="about-big reveal">
+
+            I LIKE
+            <em>making</em>
+            things that are
+            <em>useful,</em>
+            <em>beautiful</em>
+            and a little
+            <em>unexpected.</em>
+
+          </div>
+
+
+          <div class="about-copy reveal">
+
+            <p>
+              I'm Kartik Doye, a Computer Science and Technology
+              student and designer based in Bangalore.
+            </p>
+
+            <p>
+              My work sits between visual design, product design
+              and frontend development. I enjoy taking an idea,
+              figuring out what it should feel like, designing the
+              experience and, when possible, actually building it.
+            </p>
+
+            <p>
+              Outside client and internship work, I've built projects
+              ranging from personal safety products to IoT interfaces.
+              I'm currently looking for opportunities where design,
+              technology and problem solving overlap.
+            </p>
+
+
+            <div class="about-tags">
+
+              <span class="tag">Figma</span>
+              <span class="tag">Adobe CC</span>
+              <span class="tag">UI / UX</span>
+              <span class="tag">Branding</span>
+              <span class="tag">Motion</span>
+              <span class="tag">Framer</span>
+              <span class="tag">HTML / CSS</span>
+              <span class="tag">JavaScript</span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CONTACT
+    ========================= -->
+
+    <section id="contact" class="contact">
+
+      <div class="page">
+
+        <span class="eyebrow reveal">
+          04 / Contact
+        </span>
+
+        <h2 class="contact-title reveal">
+
+          LET'S MAKE
+          <br>
+          <span>SOMETHING</span>
+          <br>
+          GREAT.
+
+        </h2>
+
+
+        <div class="contact-row reveal">
+
+          <a
+            href="mailto:doyekartik20@gmail.com"
+            class="email-link"
+          >
+            doyekartik20@gmail.com
+          </a>
+
+          <a
+            href="tel:+918792429712"
+            class="email-link"
+          >
+            +91 8792429712
+          </a>
+
+
+          <div class="socials">
+
+            <a
+              href="https://www.linkedin.com/in/doyekartik"
+              class="social"
+              target="_blank"
+              rel="noreferrer"
+            >
+              LinkedIn ↗
+            </a>
+
+            <a
+              href="https://www.instagram.com/doyekartik"
+              class="social"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Instagram ↗
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <div class="page">
+
+      <footer>
+
+        <span>
+          © 2026 Kartik Doye
+        </span>
+
+        <span>
+          Designed + built by Kartik
+        </span>
+
+        <span>
+          Bangalore / India
+        </span>
+
+      </footer>
+
+    </div>
+
+  </main>
+
+
+  <!-- =========================
+       PROJECT MODAL
+  ========================= -->
+
+  <div class="modal" id="projectModal">
+
+    <div class="modal-inner">
+
+      <button
+        class="modal-close"
+        id="modalClose"
+        aria-label="Close"
+      >
+        ×
+      </button>
+
+      <div
+        class="modal-image"
+        id="modalImage"
+      ></div>
+
+      <div class="modal-content">
+
+        <span
+          class="eyebrow"
+          id="modalEyebrow"
+        ></span>
+
+        <h2 id="modalTitle"></h2>
+
+        <p id="modalDescription"></p>
+
+        <div class="modal-case-study" id="modalCaseStudy">
+          <h3>How I built it</h3>
+          <p id="modalBuild"></p>
+        </div>
+
+        <div class="modal-gallery" id="modalGallery"></div>
+
+        <div
+          class="modal-meta"
+          id="modalMeta"
+        ></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <script>
+
+    /* =========================
+       THEME
+    ========================= */
+
+    const themeBtn = document.getElementById("themeBtn");
+
+    themeBtn.addEventListener("click", () => {
+
+      document.body.classList.toggle("dark");
+
+      const dark =
+        document.body.classList.contains("dark");
+
+      themeBtn.textContent = dark ? "☾" : "☼";
+
+      localStorage.setItem(
+        "portfolio-theme",
+        dark ? "dark" : "light"
+      );
+
+    });
+
+
+    const savedTheme =
+      localStorage.getItem("portfolio-theme");
+
+    if (savedTheme === "dark") {
+
+      document.body.classList.add("dark");
+      themeBtn.textContent = "☾";
+
+    }
+
+
+    /* =========================
+       NAVIGATION VISIBILITY
+    ========================= */
+
+    const nav = document.querySelector("nav");
+
+    window.addEventListener("scroll", () => {
+
+      nav.classList.toggle(
+        "nav-hidden",
+        window.scrollY > 32
+      );
+
+    }, { passive: true });
+
+
+    /* =========================
+       MOBILE MENU
+    ========================= */
+
+    const menuBtn =
+      document.getElementById("menuBtn");
+
+    menuBtn.addEventListener("click", () => {
+
+      const links =
+        document.querySelector(".nav-links");
+
+      const open =
+        links.classList.toggle("mobile-open");
+
+      if (open) {
+
+        links.style.display = "flex";
+        links.style.position = "fixed";
+        links.style.top = "80px";
+        links.style.left = "10px";
+        links.style.right = "10px";
+        links.style.padding = "22px";
+        links.style.flexDirection = "column";
+        links.style.alignItems = "flex-start";
+        links.style.background = "var(--surface)";
+        links.style.border = "1px solid var(--line)";
+        links.style.borderRadius = "20px";
+
+      } else {
+
+        links.removeAttribute("style");
+
+      }
+
+    });
+
+
+    /* =========================
+       SCROLL REVEAL
+    ========================= */
+
+    const revealElements =
+      document.querySelectorAll(".reveal");
+
+    const revealObserver =
+      new IntersectionObserver(
+        (entries) => {
+
+          entries.forEach((entry) => {
+
+            if (entry.isIntersecting) {
+
+              entry.target.classList.add("visible");
+
+              revealObserver.unobserve(
+                entry.target
+              );
+
+            }
+
+          });
+
+        },
+        {
+          threshold: 0.12
+        }
+      );
+
+
+    revealElements.forEach((element) => {
+
+      revealObserver.observe(element);
+
+    });
+
+
+    /* =========================
+       PROJECT DATA
+    ========================= */
+
+    const projects = {
+
+      drops: {
+
+        title: "The Drops Co",
+
+        eyebrow:
+          "Visual Graphic Design Internship / 2026",
+
+        description:
+          "A visual design project created during my internship at The Drops Co. I worked across hero graphics, visual direction, campaign assets and motion, helping develop a visual language that could translate across different formats.",
+
+        build:
+          "At The Drops Co, I explored how editorial layouts, photography, type and motion could work together as one flexible digital language. I created and refined the visual directions in Figma, using expressive image crops, generous whitespace and varied editorial compositions to keep each page distinctive while still feeling connected to the brand.",
+
+        images: [
+          "thedropsco001.png",
+          "thedropsco002.png",
+          "thedropsco003.png",
+          "thedropsco004.png",
+          "thedropsco005.png"
+        ],
+
+        featuredImage: "thedropsco001.png",
+
+        story: [
+          {
+            image: "thedropsco001.png",
+            title: "Editorial homepage explorations",
+            text: "I explored contrasting homepage directions, combining rich photography and editorial typography to give the brand a more distinctive digital presence."
+          },
+          {
+            image: "thedropsco002.png",
+            title: "A story-led content layout",
+            text: "This direction pairs an article-style introduction with image blocks and warm colour to make long-form content feel inviting and easy to browse."
+          },
+          {
+            image: "thedropsco003.png",
+            title: "Content designed for discovery",
+            text: "I arranged the browsing experience around strong imagery, clear reading hierarchy and modular article cards that encourage readers to explore further."
+          },
+          {
+            image: "thedropsco004.png",
+            title: "Brand moments across the page",
+            text: "The visual system carries through different page sections with considered type, photography and layout changes that still feel part of one cohesive experience."
+          },
+          {
+            image: "thedropsco005.png",
+            title: "A flexible digital system",
+            text: "I developed visual components that can adapt to different articles and stories while preserving the warm, editorial character of The Drops Co."
+          },
+          {
+            video: "thedropscovideo006.mp4",
+            title: "Motion study",
+            text: "This looping motion study shows how movement can extend the visual language and bring more energy to the digital experience."
+          }
+        ],
+
+        meta: [
+          "Visual Design",
+          "Brand",
+          "Campaign",
+          "Motion",
+          "Adobe",
+          "Figma"
+        ],
+
+        className: "drops"
+
+      },
+
+      panic: {
+
+        title: "PanicSafe",
+
+        eyebrow:
+          "Personal Product / UI UX",
+
+        description:
+          "PanicSafe is a personal safety concept for cab rides and check-ins. It gives people one clear place to start a safety timer, share their location with trusted contacts and trigger an emergency action when they need help.",
+
+        build:
+          "I started by mapping the high-stress journey from entering a cab to arriving safely, then reduced it to the fewest possible actions: check in, set a visible timer, add emergency contacts and access a panic button. I designed and prototyped the flows in Figma, using large touch targets, calm default states and a high-contrast red emergency state so the next action remains obvious under pressure.",
+
+        images: [
+          "panicsafe001.png",
+          "panicsafe002.png",
+          "panicsafe003.png"
+        ],
+
+        featuredImage: "psfeature.png",
+
+        story: [
+          {
+            image: "panicsafe001.png",
+            title: "A complete safety flow",
+            text: "I brought the core states together—check-in, an active ride timer and the emergency alarm—to test whether the experience still felt understandable at a glance."
+          },
+          {
+            image: "panicsafe002.png",
+            title: "Designed for one-tap actions",
+            text: "The home screen is built around speed, clarity, and immediate access to the features that matter most when every second counts. A large check-in control sits at the centre of the experience, making it easy to confirm that everything is okay with a single tap. The panic button remains clearly visible and available at all times, providing instant access to emergency support whenever it is needed. Contact setup is kept simple and straightforward, allowing trusted contacts to be added without navigating through complicated menus or settings. Every element is intentionally positioned to reduce friction, minimise unnecessary decisions, and ensure that the most important actions are always within easy reach."
+          },
+          {
+            image: "panicsafe003.png",
+            title: "Refined in Figma",
+            text: "I developed the components and states in Figma, exploring the visual system and interaction details before connecting them into an interactive prototype."
+          }
+        ],
+
+        meta: [
+          "Product Design",
+          "UI UX",
+          "Interaction",
+          "PWA",
+          "Figma"
+        ],
+
+        className: "panic"
+
+      },
+
+      root: {
+
+        title: "RootWatch",
+
+        eyebrow:
+          "IoT Product / UI UX",
+
+        description:
+          "RootWatch is a smart plant monitoring concept connecting physical sensors with a digital interface. The product explores soil moisture, light, environmental data and automated watering through a simple visual dashboard.",
+
+        build:
+          "I shaped RootWatch around the question a plant owner needs answered first: is my plant okay? I organised the dashboard around a single health signal, then paired it with moisture, humidity, temperature and watering history. I designed the system and interface in Figma, using changing health states and clear status language to make sensor data easy to understand at a glance.",
+
+        images: [
+          "rootwatch001.png",
+          "rootwatch002.png",
+          "rootwatch003.png",
+          "rootwatch004.png",
+          "rootwatch005.png"
+        ],
+
+        featuredImage: "rootwatch001.png",
+
+        story: [
+          {
+            image: "rootwatch001.png",
+            title: "Health at a glance",
+            text: "I designed three distinct plant-health states so the same dashboard can quickly communicate when a plant is thriving, needs attention or is approaching a problem."
+          },
+          {
+            image: "rootwatch002.png",
+            title: "Simple navigation",
+            text: "The bottom navigation groups the experience into home, statistics, settings and account, keeping monitoring controls easy to find without crowding the main view."
+          },
+          {
+            image: "rootwatch003.png",
+            title: "A recognisable identity",
+            text: "I created a minimal botanical mark and a spacious wordmark to give RootWatch a calm, considered identity that fits the product's purpose."
+          },
+          {
+            image: "rootwatch004.png",
+            title: "Readable sensor data",
+            text: "The dashboard foregrounds plant health, then makes the supporting readings—moisture, humidity and temperature—scannable through a clear visual hierarchy."
+          },
+          {
+            image: "rootwatch005.png",
+            title: "Clear status language",
+            text: "I used direct, reassuring status messages such as “BUSSIN’” to turn raw sensor readings into an understandable update for the owner."
+          }
+        ],
+
+        meta: [
+          "Product Design",
+          "IoT",
+          "Dashboard",
+          "UI UX",
+          "ESP32"
+        ],
+
+        className: "root"
+
+      },
+
+      frontend: {
+
+        title: "Digital Experiences",
+
+        eyebrow:
+          "Frontend / Web",
+
+        description:
+          "A collection of web experiences where visual design meets implementation. I use HTML, CSS, JavaScript and Framer to take interfaces beyond static design files and turn them into responsive, functional experiences.",
+
+        story: [
+          { image: "panicsafe001.png", title: "PanicSafe - safety flows", text: "A mobile safety experience combining check-ins, a ride timer and emergency states." },
+          { image: "panicsafe002.png", title: "PanicSafe - one-tap controls", text: "Quick check-ins, trusted contacts and immediate access to help." },
+          { image: "panicsafe003.png", title: "PanicSafe - system exploration", text: "The Figma design work used to refine components, controls and visual states." },
+          { image: "rootwatch001.png", title: "RootWatch - health states", text: "A sensor-driven dashboard that communicates plant health at a glance." },
+          { image: "rootwatch002.png", title: "RootWatch - navigation", text: "A calm navigation system for monitoring, statistics and settings." },
+          { image: "rootwatch003.png", title: "RootWatch - identity", text: "A minimal botanical identity for a calm, recognisable product." },
+          { image: "rootwatch004.png", title: "RootWatch - data hierarchy", text: "Plant health leads, with supporting sensor readings kept scannable." },
+          { image: "rootwatch005.png", title: "RootWatch - status feedback", text: "Readable status language turns sensor data into useful updates." },
+          { image: "thedropsco001.png", title: "The Drops Co - homepage direction", text: "Editorial storytelling, photography and type in one flexible direction." },
+          { image: "thedropsco002.png", title: "The Drops Co - content composition", text: "A varied layout system using imagery, scale and warm colour." },
+          { image: "thedropsco003.png", title: "The Drops Co - content discovery", text: "A browseable editorial experience with clear reading hierarchy." },
+          { image: "thedropsco004.png", title: "The Drops Co - branded moments", text: "A cohesive visual system across varied page types and modules." },
+          { image: "thedropsco005.png", title: "The Drops Co - adaptable system", text: "A flexible direction that keeps the brand cohesive across stories." }
+        ],
+
+
+        meta: [
+          "Frontend",
+          "HTML",
+          "CSS",
+          "JavaScript",
+          "Framer"
+        ],
+
+        className: "frontend"
+
+      }
+
+    };
+
+
+    /* =========================
+       PROJECT MODAL
+    ========================= */
+
+    const modal =
+      document.getElementById("projectModal");
+
+    const modalImage =
+      document.getElementById("modalImage");
+
+    const modalTitle =
+      document.getElementById("modalTitle");
+
+    const modalEyebrow =
+      document.getElementById("modalEyebrow");
+
+    const modalDescription =
+      document.getElementById("modalDescription");
+
+    const modalCaseStudy =
+      document.getElementById("modalCaseStudy");
+
+    const modalBuild =
+      document.getElementById("modalBuild");
+
+    const modalGallery =
+      document.getElementById("modalGallery");
+
+    const modalMeta =
+      document.getElementById("modalMeta");
+
+    const modalClose =
+      document.getElementById("modalClose");
+
+
+    document
+      .querySelectorAll(".project")
+      .forEach((project) => {
+
+        project.addEventListener("click", () => {
+
+          const data =
+            projects[project.dataset.project];
+
+          modalTitle.textContent =
+            data.title;
+
+          modalEyebrow.textContent =
+            data.eyebrow;
+
+          modalDescription.textContent =
+            data.description;
+
+          modalBuild.textContent = data.build || "";
+          modalCaseStudy.classList.toggle(
+            "active",
+            Boolean(data.build)
+          );
+
+          modalGallery.innerHTML = "";
+          modalGallery.classList.toggle(
+            "active",
+            Boolean(data.story)
+          );
+
+          modalImage.innerHTML = "";
+
+          if (data.images) {
+
+            const featuredImage =
+              document.createElement("img");
+
+            featuredImage.src =
+              data.featuredImage || data.images[0];
+            featuredImage.alt =
+              `${data.title} featured design`;
+
+            modalImage.appendChild(featuredImage);
+
+          }
+
+          if (data.story) {
+
+            data.story.forEach((item) => {
+
+              const storyRow =
+                document.createElement("article");
+
+              storyRow.className = "modal-story-row";
+
+              const galleryMedia = item.video
+                ? document.createElement("video")
+                : document.createElement("img");
+
+              if (item.video) {
+
+                galleryMedia.src = item.video;
+                galleryMedia.autoplay = true;
+                galleryMedia.loop = true;
+                galleryMedia.muted = true;
+                galleryMedia.playsInline = true;
+                galleryMedia.setAttribute(
+                  "aria-label",
+                  item.title
+                );
+
+              } else {
+
+                galleryMedia.src = item.image;
+                galleryMedia.alt = item.title;
+
+              }
+
+              const storyCopy =
+                document.createElement("div");
+
+              storyCopy.className = "modal-story-copy";
+              storyCopy.innerHTML =
+                `<h3>${item.title}</h3><p>${item.text}</p>`;
+
+              storyRow.append(galleryMedia, storyCopy);
+              modalGallery.appendChild(storyRow);
+
+            });
+
+          }
+
+          modalMeta.innerHTML = "";
+
+          data.meta.forEach((item) => {
+
+            const tag =
+              document.createElement("span");
+
+            tag.className = "tag";
+            tag.textContent = item;
+
+            modalMeta.appendChild(tag);
+
+          });
+
+
+          modalImage.className =
+            "modal-image " + data.className;
+
+          modal.classList.add("active");
+
+          document.body.style.overflow =
+            "hidden";
+
+        });
+
+      });
+
+
+    function closeModal() {
+
+      modal.classList.remove("active");
+
+      document.body.style.overflow =
+        "";
+
+    }
+
+
+    modalClose.addEventListener(
+      "click",
+      closeModal
+    );
+
+
+    modal.addEventListener(
+      "click",
+      (event) => {
+
+        if (event.target === modal) {
+
+          closeModal();
+
+        }
+
+      }
+    );
+
+
+    document.addEventListener(
+      "keydown",
+      (event) => {
+
+        if (
+          event.key === "Escape" &&
+          modal.classList.contains("active")
+        ) {
+
+          closeModal();
+
+        }
+
+      }
+    );
+
+
+    /* =========================
+       SMOOTH NAV
+    ========================= */
+
+    document
+      .querySelectorAll('a[href^="#"]')
+      .forEach((link) => {
+
+        link.addEventListener("click", (event) => {
+
+          const target =
+            document.querySelector(
+              link.getAttribute("href")
+            );
+
+          if (!target) return;
+
+          event.preventDefault();
+
+          target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+
+        });
+
+      });
+
+
+    /* =========================
+       SUBTLE MOUSE PARALLAX
+    ========================= */
+
+    const projectVisuals =
+      document.querySelectorAll(
+        ".project-visual"
+      );
+
+    document.addEventListener(
+      "mousemove",
+      (event) => {
+
+        const x =
+          (event.clientX /
+            window.innerWidth -
+            0.5) *
+          2;
+
+        const y =
+          (event.clientY /
+            window.innerHeight -
+            0.5) *
+          2;
+
+        projectVisuals.forEach((visual) => {
+
+          visual.style.transform =
+            `translate(${x * 3}px, ${y * 3}px)`;
+
+        });
+
+      }
+    );
+
+
+    /* =========================
+       CURRENT YEAR
+    ========================= */
+
+    const footer =
+      document.querySelector("footer");
+
+    if (footer) {
+
+      footer.innerHTML =
+        footer.innerHTML.replace(
+          "2026",
+          new Date().getFullYear()
+        );
+
+    }
+
+  </script>
+
+</body>
+</html>
